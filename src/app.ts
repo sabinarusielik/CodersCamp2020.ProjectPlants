@@ -1,20 +1,25 @@
 import express from 'express';
-import 'dotenv/config';
 
+import connectDatabase from '../config/database';
+
+require('dotenv').config();
 const app = express();
-const mongoose = require('mongoose');
 
-const {
-    MONGO_USER,
-    MONGO_PASSWORD,
-    MONGO_PATH,
-} = process.env;
+// Connect to MongoDB
+connectDatabase();
 
-app.listen(3000);
-mongoose.connect('mongodb+srv://'+process.env.MONGO_USER+':'+process.env.MONGO_PASSWORD+process.env.MONGO_PATH, {useNewUrlParser: true, useUnifiedTopology: true},
-(err: string) => {
-if (err)
-console.log(err);
-else
-console.log("Connected to the mongoDB");
+// Express configuration
+app.set('port', process.env.PORT || 8080);
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+
+app.get('/', (_req, res) => {
+    console.log('I am alive');
+    res.send('API Running');
 });
+
+const host = process.env.HOST || '127.0.0.1';
+const port = process.env.PORT || 8080;
+app.listen(+port, host, () => console.log(`[Server] Listening on http://${host}:${port}`));
+
+export default app;
