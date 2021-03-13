@@ -1,4 +1,5 @@
 import express from 'express';
+const species = require('./routes/api/species');
 
 import connectDatabase from '../config/database';
 
@@ -13,6 +14,8 @@ app.set('port', process.env.PORT || 8080);
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
+app.use('/api/species', species)
+
 app.get('/', (_req, res) => {
     console.log('I am alive');
     res.send('API Running');
@@ -23,3 +26,4 @@ const port = process.env.PORT || 8080;
 app.listen(+port, host, () => console.log(`[Server] Listening on http://${host}:${port}`));
 
 export default app;
+
