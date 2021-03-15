@@ -1,29 +1,21 @@
-import { Document, Model, model, Schema } from 'mongoose';
-// import { User } from "./User";
-// import { Household } from "./Household";
-// import { Plants } from "./Plants";
+import { Schema } from 'mongoose';
 
-export interface IProfile extends Document {
-    // user: User["_id"];
-    // household: Household["_id"];
-    // plants: Plants["_id"];
-    age: number;
-    avatar: string;
-}
+const express = require('express');
+const mongoose = require('mongoose');
 
-const profileSchema: Schema = new Schema({
-    user: {
-        type: Schema.Types.ObjectId,
-        ref: 'User',
-    },
-    household: {
-        type: Schema.Types.ObjectId,
-        ref: 'Household',
-    },
-    plants: {
-        type: [Schema.Types.ObjectId],
-        ref: 'Plant',
-    },
+const profilesSchema = new mongoose.Schema({
+    // user: {
+    //     type: Schema.Types.ObjectId,
+    //     ref: 'User',
+    // },
+    // household: {
+    //     type: Schema.Types.ObjectId,
+    //     ref: 'Household',
+    // },
+    // plants: {
+    //     type: [Schema.Types.ObjectId],
+    //     ref: 'Plant',
+    // },
     age: {
         type: Number,
         required: true,
@@ -33,6 +25,45 @@ const profileSchema: Schema = new Schema({
     },
 });
 
-const Profile: Model<Document<IProfile>> = model('Profile', profileSchema);
+const Profile = mongoose.model('Species', profilesSchema);
 
-export default Profile;
+module.exports = Profile;
+
+// import { Document, Model, model, Schema } from 'mongoose';
+// // import { User } from "./User";
+// // import { Household } from "./Household";
+// // import { Plants } from "./Plants";
+
+// export interface IProfile extends Document {
+//     // user: User["_id"];
+//     // household: Household["_id"];
+//     // plants: Plants["_id"];
+//     age: number;
+//     avatar: string;
+// }
+
+// const profileSchema: Schema = new Schema({
+//     // user: {
+//     //     type: Schema.Types.ObjectId,
+//     //     ref: 'User',
+//     // },
+//     // household: {
+//     //     type: Schema.Types.ObjectId,
+//     //     ref: 'Household',
+//     // },
+//     // plants: {
+//     //     type: [Schema.Types.ObjectId],
+//     //     ref: 'Plant',
+//     // },
+//     age: {
+//         type: Number,
+//         required: true,
+//     },
+//     avatar: {
+//         type: String,
+//     },
+// });
+
+// const Profile: Model<Document<IProfile>> = model('Profile', profileSchema);
+
+// export default Profile;
