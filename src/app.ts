@@ -1,4 +1,5 @@
 import express from 'express';
+const profile = require('./routes/api/profile');
 
 import connectDatabase from '../config/database';
 
@@ -12,6 +13,8 @@ connectDatabase();
 app.set('port', process.env.PORT || 8080);
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+
+app.use('/api/profiles', profile);
 
 app.get('/', (_req, res) => {
     console.log('I am alive');
