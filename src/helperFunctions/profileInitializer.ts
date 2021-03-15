@@ -6,7 +6,7 @@ export const initializeProfile = () => {
     createProfile(78, 'zdfvzdfgdfb');
 };
 
-async function createProfile(
+export async function createProfile(
     // user: User["_id"],
     // household: Household["_id"],
     // plants: Plants["_id"];
