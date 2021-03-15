@@ -1,5 +1,6 @@
 import express from 'express';
 const species = require('./routes/api/species');
+const userRoutes = require('./routes/api/user');
 
 import connectDatabase from '../config/database';
 
@@ -23,6 +24,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use('/api/stats', statsRouter);
 
 app.use('/api/species', species)
+
+app.use('/api/user', userRoutes)
 
 app.get('/', (_req, res) => {
     console.log('I am alive');
