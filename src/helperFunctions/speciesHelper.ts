@@ -1,4 +1,4 @@
-const Species = require ('.././models/Species')
+const Species = require ('../models/Species')
 export async function getSpecies() {
     const species = await Species.find();
     return species;

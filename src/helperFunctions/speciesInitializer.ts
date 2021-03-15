@@ -1,4 +1,4 @@
-const Species = require('.././models/Species');
+const Species = require('../models/Species');
 const mongoose = require('mongoose');
 
 export const intializeSpecies = () => {

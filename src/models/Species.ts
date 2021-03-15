@@ -3,11 +3,6 @@ import { Schema } from "mongoose";
 const express = require('express');
 const mongoose = require('mongoose');
 
-// enum preferSunExposureType {
-//     SHADED,
-//     HALFSUNNY,
-//     SUNNY,
-// }
 const speciesSchema = new mongoose.Schema({
     id: mongoose.Schema.Types.ObjectId,
     speciesName: String,
