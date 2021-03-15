@@ -12,7 +12,7 @@ router.get('/', async (req: Request, res: Response) => {
 
 router.post('/', async (req: Request, res: Response) => {
     initializeProfile();
-    res.status(200).end();
+    res.status(200).send('Profile was added').end();
 });
 
 module.exports = router;
