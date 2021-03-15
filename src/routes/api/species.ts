@@ -7,20 +7,26 @@ const router = express.Router();
 
 router.get('/', async (req: Request, res: Response) => {
     const species = await getSpecies();
-    res.status(200).send(species);
+    if (species.length) {
+        res.status(200).send(species);
+    } else {
+        res.status(404).json({ error: 'There is no species to display' });
+    }
 });
 
 router.get('/:name', async (req: Request, res: Response) => {
     const name = req.params.name;
     const oneSpecies = await getSpeciesByName(name);
-    res.status(200).send(oneSpecies);
+    if (oneSpecies) {
+        res.status(200).send(oneSpecies);
+    } else {
+        res.status(404).json({ error: `There is no species with name: '${name}'.` });
+    }
 });
 
 router.post('/', async (req: Request, res: Response) => {
     intializeSpecies();
-    res.status(200).end();
+    res.status(200).send('Species were added').end();
 });
-
-
 
 module.exports = router;
