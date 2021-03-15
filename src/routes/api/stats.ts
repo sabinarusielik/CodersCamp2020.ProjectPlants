@@ -52,4 +52,16 @@ router.put('/:name',async (req: Request, res: Response) => {
     res.status(200).send('updated')
 });
 
+router.delete('/:id', async (req: Request, res: Response) => {
+    const plant = await Stats.findByIdAndRemove(req.params.id);
+    if(plant) {
+      return res.status(204).json({})
+    }
+    else {
+      return res.status(404).json({
+        "error" : `Cannot find a plant with id: ${req.params.id}`
+      });
+    }
+})
+
 export default router;

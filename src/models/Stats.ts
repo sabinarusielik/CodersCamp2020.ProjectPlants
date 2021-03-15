@@ -1,7 +1,9 @@
 const express = require('express');
 const mongoose = require('mongoose');
+import { Schema } from 'mongoose';
 
 const statsSchema = new mongoose.Schema({
+    id: mongoose.Schema.Types.ObjectId,
     plantsName: String,
     current_streak: Number,
     streak_target: Number,
