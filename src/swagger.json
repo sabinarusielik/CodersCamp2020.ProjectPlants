@@ -23,10 +23,14 @@
         {
             "name": "Plants",
             "description": "API for plants in the system"
-        }, 
+        },
         {
             "name": "Species",
             "description": "API for spiecies in the database"
+        },
+        {
+            "name": "Profiles",
+            "description": "API for profiles in the database"
         }
     ],
     "consumes": ["application/json"],
@@ -226,6 +230,115 @@
                     }
                 }
             }
+        },
+        "/profile": {
+            "get": {
+                "tags": ["Profiles"],
+                "summary": "Get all profiles in system",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Profile"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": ["Profiles"],
+                "summary": "Initializer of profiles in DB",
+                "requestBody": {
+                    "description": "Profile Object",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/definitions/Profile"
+                            }
+                        }
+                    }
+                },
+                "produces": ["application/json"],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/id"
+                        }
+                    },
+                    "400": {
+                        "description": "Failed. Bad post data."
+                    }
+                }
+            }
+        },
+        "/profile/{id}": {
+            "put": {
+                "summary": "Add plant for user with given user ID",
+                "tags": ["Profiles"],
+                "requestBody": {
+                    "description": "Profile Object",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/definitions/Plant"
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "required": true,
+                        "description": "Profile with new plant",
+                        "schema": {
+                            "$ref": "#/definitions/id"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Profile"
+                        }
+                    },
+                    "400": {
+                        "description": "Failed. Bad post data."
+                    },
+                    "404": {
+                        "description": "Failed. Profile not found."
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Delete profile with given user ID",
+                "tags": ["Profiles"],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "required": true,
+                        "description": "Delete profile with id",
+                        "schema": {
+                            "$ref": "#/definitions/id"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/id"
+                        }
+                    },
+                    "404": {
+                        "description": "Failed. Profile not found."
+                    }
+                }
+            }
         }
     },
     "definitions": {
@@ -256,6 +369,46 @@
                 },
                 "average_month": {
                     "type": "number"
+                }
+            }
+        },
+        "Profile": {
+            "type": "object",
+            "properties": {
+                "user": {
+                    "type": "object"
+                },
+                "household": {
+                    "type": "object"
+                },
+                "plants": {
+                    "type": "object"
+                },
+                "age": {
+                    "type": "number"
+                },
+                "avatar": {
+                    "type": "string"
+                }
+            }
+        },
+        "Plant": {
+            "type": "object",
+            "properties": {
+                "species": {
+                    "type": "object"
+                },
+                "watering": {
+                    "type": "object"
+                },
+                "checkpoint": {
+                    "type": "object"
+                },
+                "wateringInterval": {
+                    "type": "number"
+                },
+                "conditions": {
+                    "type": "object"
                 }
             }
         }
