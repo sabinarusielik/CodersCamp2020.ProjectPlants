@@ -1,7 +1,7 @@
 const express = require('express');
 import { Request, Response, Router } from 'express';
 import { getUser, getUserByName } from '../../helperFunctions/userHelper';
-import { initializeUser } from '../../helperFunctions/userInitializer'
+import { createUser } from '../../helperFunctions/userInitializer'
 
 const router = express.Router();
 
@@ -17,9 +17,20 @@ router.get('/:name', async (req: Request, res: Response) => {
     res.status(200).send(oneUser);
 });
 
-router.post('/signup', async (req: Request, res: Response) => {
-    initializeUser();
-    res.status(200).end();
+router.post('/', async (req: Request, res: Response) => {
+    const data = req.body;
+    if(Object.keys(data).length === 0) {
+        res.status(400).json({
+            "error" : "Body cannot be empty"
+        })
+    } else {
+        createUser(
+            data.username,
+            data.password,
+            data.email,
+        );
+        res.status(200).end();
+    }
 });
 
 module.exports = router;
