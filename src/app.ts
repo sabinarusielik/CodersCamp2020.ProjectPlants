@@ -1,7 +1,12 @@
 import express from 'express';
+
 const profileRoutes = require('./routes/api/profile');
+const species = require('./routes/api/species');
+
 
 import connectDatabase from '../config/database';
+
+import statsRouter from './routes/api/stats'
 
 require('dotenv').config();
 const app = express();
@@ -13,7 +18,8 @@ connectDatabase();
 app.set('port', process.env.PORT || 8080);
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-
+app.use('/api/stats', statsRouter)
+app.use('/api/species', species)
 app.use('/api/profile', profileRoutes);
 
 app.get('/', (_req, res) => {
@@ -26,3 +32,4 @@ const port = process.env.PORT || 8080;
 app.listen(+port, host, () => console.log(`[Server] Listening on http://${host}:${port}`));
 
 export default app;
+
