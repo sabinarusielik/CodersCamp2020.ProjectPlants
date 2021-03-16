@@ -27,6 +27,10 @@
         {
             "name": "Species",
             "description": "API for spiecies in the database"
+        },
+        {
+            "name": "User",
+            "description": "API for users in the database"
         }
     ],
     "consumes": ["application/json"],
@@ -223,6 +227,69 @@
                     },
                     "404": {
                         "description": "There is no species with name: {name}"
+                    }
+                }
+            }
+        },
+        "/user": {
+            "get": {
+                "tags": ["User"],
+                "summary": "Get all users",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            },
+            "post": {
+                "tags": ["User"],
+                "summary": "Create new user in system",
+                "requestBody": {
+                    "description": "User Object",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                        }
+                    }
+                },
+                "produces": ["application/json"],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Body cannot be empty."
+                    }
+                }
+            }
+        },
+        "/user/:name": {
+            "parameters": [
+                {
+                    "name": "username",
+                    "in": "path",
+                    "required": true,
+                    "description": "Username of desired user",
+                    "type": "string"
+                }
+            ],
+            "get": {
+                "tags": ["User"],
+                "summary": "Get user with given username",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "username",
+                        "required": true,
+                        "description": "User with usernamename"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "404": {
+                        "description": "There is no such user {name}"
                     }
                 }
             }
