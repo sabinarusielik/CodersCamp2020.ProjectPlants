@@ -23,6 +23,4 @@ router.post('/', async (req: Request, res: Response) => {
     res.status(200).send('Profile was added').end();
 });
 
-// router.put('');
-
 module.exports = router;
