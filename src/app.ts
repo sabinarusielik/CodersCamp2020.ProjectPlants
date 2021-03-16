@@ -4,33 +4,32 @@ import connectDatabase from '../config/database';
 
 import statsRouter from './routes/api/stats';
 
-import swaggerUI = require('swagger-ui-express');
-import swaggerJSDoc = require('swagger-jsdoc');
+import swaggerUi from 'swagger-ui-express';
+import * as swaggerDocument from './swagger.json';
 
+// const options = {
+//     definition: {
+//         openapi: '3.0.0',
+//         info: {
+//             title: 'Library API',
+//             version: '1.0.0',
+//             description: 'Express Library API',
+//         },
+//         servers: [
+//             {
+//                 url: 'http://localhost:4000',
+//             },
+//         ],
+//     },
+//     apis: ['./src/routes/*.js'],
+// };
 
-const options = {
-    definition: {
-        openapi: "3.0.0",
-        info: {
-            title: "Library API",
-            version: "1.0.0",
-            description: "Express Library API"
-        },
-        servers: [
-            {
-                url: "http://localhost:4000"
-            }
-        ], 
-    },
-    apis: ["./src/routes/*.js"]
-};
-
-const specs = swaggerJSDoc(options)
+// const specs = swaggerJSDoc(options);
 
 require('dotenv').config();
 const app = express();
 
-app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(specs))
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 // Connect to MongoDB
 connectDatabase();
@@ -39,7 +38,7 @@ connectDatabase();
 app.set('port', process.env.PORT || 8080);
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use('/api/stats', statsRouter)
+app.use('/api/stats', statsRouter);
 
 app.get('/', (_req, res) => {
     console.log('I am alive');
