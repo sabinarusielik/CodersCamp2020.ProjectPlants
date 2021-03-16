@@ -13,6 +13,8 @@ router.get('/', (req: Request, res: Response) => {
 });
 
 router.post('/', async (req: Request, res: Response) => {
+    const data = req.body;
+    
     const schema = {
         wateringInterval: Joi.Number().required(),
         species: Joi.string().min(3).required()
@@ -22,11 +24,10 @@ router.post('/', async (req: Request, res: Response) => {
         res.status(400).send(result.error.details[0].message);
         return;
     }
-    let plant = new Plants() {
-        name: req.body.name,
-        species: req.body.species,
-        wateringInterval: req.body.wateringInterval
-    }
+    let plant = new Plants({
+        species: data.species,
+        wateringInterval: data.wateringInterval
+    }) 
     plant = await plant.save();
 });
 
