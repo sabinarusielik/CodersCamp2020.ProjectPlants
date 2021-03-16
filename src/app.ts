@@ -1,12 +1,10 @@
 import express from 'express';
 
 const profileRoutes = require('./routes/api/profile');
+const userRoutes = require('./routes/api/user');
 const species = require('./routes/api/species');
 
-
 import connectDatabase from '../config/database';
-
-import statsRouter from './routes/api/stats'
 
 require('dotenv').config();
 const app = express();
@@ -18,7 +16,9 @@ connectDatabase();
 app.set('port', process.env.PORT || 8080);
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+
 app.use('/api/stats', statsRouter)
+app.use('/api/user', userRoutes)
 app.use('/api/species', species)
 app.use('/api/profile', profileRoutes);
 

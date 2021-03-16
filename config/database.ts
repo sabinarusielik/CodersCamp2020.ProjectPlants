@@ -19,7 +19,7 @@ const connectDatabase = async () => {
 
 const setMongoURI = (): string => {
     if (process.env.NODE_ENV === 'production') {
-        return `${process.env.DB_PROT}://${process.env.DB_USER}:${process.env.DB_PASS}@${process.env.DB_HOST}:${process.env.DB_PORT}/${process.env.DB_NAME}`;
+        return `${process.env.DB_PROT}://${process.env.DB_USER}:${process.env.DB_PASS}@${process.env.DB_HOST}/${process.env.DB_NAME}`;
     } else {
         return `${process.env.DB_PROT_DEV}://${process.env.DB_HOST_DEV}:${process.env.DB_PORT_DEV}/${process.env.DB_NAME_DEV}`;
     }
