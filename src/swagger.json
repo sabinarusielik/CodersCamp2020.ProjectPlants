@@ -21,31 +21,31 @@
     ],
     "tags": [
         {
-            "name": "Cats",
-            "description": "API for cats in the system"
+            "name": "Plants",
+            "description": "API for plants in the system"
         }
     ],
     "consumes": ["application/json"],
     "produces": ["application/json"],
     "paths": {
-        "/cats": {
+        "/stats": {
             "get": {
-                "tags": ["Cats"],
-                "summary": "Get all cats in system",
+                "tags": ["Plants"],
+                "summary": "Get all stats in system",
                 "responses": {
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/Cats"
+                            "$ref": "#/definitions/Cat"
                         }
                     }
                 }
             },
             "post": {
-                "tags": ["Cats"],
-                "summary": "Create a new cat in system",
+                "tags": ["Plants"],
+                "summary": "Create a new plant's stats in system",
                 "requestBody": {
-                    "description": "Cat Object",
+                    "description": "Plant Object",
                     "required": true,
                     "content": {
                         "application/json": {
@@ -69,25 +69,25 @@
                 }
             }
         },
-        "/cats/{id}": {
+        "/stats/{id}": {
             "parameters": [
                 {
                     "name": "id",
                     "in": "path",
                     "required": true,
-                    "description": "ID of the cat that we want to match",
+                    "description": "Name of the plant that we want to match",
                     "type": "string"
                 }
             ],
             "get": {
-                "tags": ["Cats"],
-                "summary": "Get cat with given ID",
+                "tags": ["Plants"],
+                "summary": "Get plant with given name",
                 "parameters": [
                     {
                         "in": "path",
                         "name": "id",
                         "required": true,
-                        "description": "Cat with id",
+                        "description": "Give me the name of your plant I'll give you stats",
                         "schema": {
                             "$ref": "#/definitions/id"
                         }
@@ -101,15 +101,15 @@
                         }
                     },
                     "404": {
-                        "description": "Failed. Cat not found."
+                        "description": "Failed. Plant not found."
                     }
                 }
             },
             "put": {
-                "summary": "Update cat with given ID",
-                "tags": ["Cats"],
+                "summary": "Update plant's sats with given ID",
+                "tags": ["Plants"],
                 "requestBody": {
-                    "description": "Cat Object",
+                    "description": "Plant Object",
                     "required": true,
                     "content": {
                         "application/json": {
@@ -124,7 +124,7 @@
                         "in": "path",
                         "name": "id",
                         "required": true,
-                        "description": "Cat with new values of properties",
+                        "description": "Plant with new stats",
                         "schema": {
                             "$ref": "#/definitions/id"
                         }
@@ -141,19 +141,19 @@
                         "description": "Failed. Bad post data."
                     },
                     "404": {
-                        "description": "Failed. Cat not found."
+                        "description": "Failed. Plant not found."
                     }
                 }
             },
             "delete": {
-                "summary": "Delete cat with given ID",
-                "tags": ["Cats"],
+                "summary": "Delete plant's stats with given ID",
+                "tags": ["Plants"],
                 "parameters": [
                     {
                         "in": "path",
                         "name": "id",
                         "required": true,
-                        "description": "Delete Cat with id",
+                        "description": "Delete plant's stats with id",
                         "schema": {
                             "$ref": "#/definitions/id"
                         }
@@ -167,7 +167,7 @@
                         }
                     },
                     "404": {
-                        "description": "Failed. Cat not found."
+                        "description": "Failed. Plant not found."
                     }
                 }
             }
@@ -184,28 +184,23 @@
         "Cat": {
             "type": "object",
             "properties": {
-                "genus": {
+                "plantsName": {
                     "type": "string"
                 },
-                "name": {
-                    "type": "string"
+                "current_streak": {
+                    "type": "number"
                 },
-                "isHungry": {
-                    "type": "boolean"
+                "streak_target": {
+                    "type": "number"
                 },
-                "lastFedDate": {
-                    "type": "string"
-                }
-            }
-        },
-        "Cats": {
-            "type": "object",
-            "properties": {
-                "cats": {
-                    "type": "object",
-                    "additionalProperties": {
-                        "$ref": "#/definitions/Cat"
-                    }
+                "max_streak": {
+                    "type": "number"
+                },
+                "percent_success": {
+                    "type": "number"
+                },
+                "average_month": {
+                    "type": "number"
                 }
             }
         }
