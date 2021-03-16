@@ -171,6 +171,57 @@
                     }
                 }
             }
+        },
+        "/species": {
+            "get": {
+                "tags": ["Species"],
+                "summary": "Get all species in DB",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            },
+            "post": {
+                "tags": ["Species"],
+                "summary": "Initializer of species in DB",
+                "responses": {
+                    "200": {
+                        "description": "Species was added"
+                    }
+                }
+            }
+        },
+        "/species/:name": {
+            "parameters": [
+                {
+                    "name": "name",
+                    "in": "path",
+                    "required": true,
+                    "description": "Name of species we want to see",
+                    "type": "string"
+                }
+            ],
+            "get": {
+                "tags": ["Species"],
+                "summary": "Get species with given name",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "name",
+                        "required": true,
+                        "description": "species with name"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "404": {
+                        "description": "There is no species with name: {name}"
+                    }
+                }
+            }
         }
     },
     "definitions": {
