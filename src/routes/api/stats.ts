@@ -21,15 +21,21 @@ router.get('/:name', async (req: Request, res: Response) => {
 
 router.post('/', async (req: Request, res: Response) => {
     const data = req.body;
-    createStats(
-        data.plantsName,
-        data.current_streak,
-        data.streak_target,
-        data.max_streak,
-        data.percent_success,
-        data.average_month
-    );
-    res.status(200).end();
+    if(Object.keys(data).length === 0) {
+        res.status(400).json({
+            "error" : "Body can't be empty"
+        })
+    } else {
+        createStats(
+            data.plantsName,
+            data.current_streak,
+            data.streak_target,
+            data.max_streak,
+            data.percent_success,
+            data.average_month
+        );
+        res.status(200).end();
+    }
 });
 
 router.put('/:name',async (req: Request, res: Response) => {
@@ -49,13 +55,13 @@ router.put('/:name',async (req: Request, res: Response) => {
             console.log(msg)
         }
     })
-    res.status(200).send('updated')
+    res.status(200).send('Updated')
 });
 
 router.delete('/:id', async (req: Request, res: Response) => {
     const plant = await Stats.findByIdAndRemove(req.params.id);
     if(plant) {
-      return res.status(204).json({})
+      return res.status(204).send('Deleted')
     }
     else {
       return res.status(404).json({

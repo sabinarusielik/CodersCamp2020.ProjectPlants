@@ -1,4 +1,4 @@
-const Stats = require('.././models/Stats')
+const Stats = require('../models/Stats')
 
 export async function getStats() {
     const stats = await Stats.find();
