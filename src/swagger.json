@@ -23,6 +23,10 @@
         {
             "name": "Plants",
             "description": "API for plants in the system"
+        }, 
+        {
+            "name": "Species",
+            "description": "API for spiecies in the database"
         }
     ],
     "consumes": ["application/json"],
