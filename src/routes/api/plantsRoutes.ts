@@ -3,7 +3,7 @@ import {Plants} from "../../models/Plants";
 import { Request, Response, Router } from 'express';
 const Joi = require('joi');
 
-import {getPlants} from '../../plantsHelper'
+import {getPlants} from '../../helperFunctions/plantsHelper'
 const mongoose = require('mongoose');
 const router: Router = Router();
 

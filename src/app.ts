@@ -2,6 +2,7 @@ import express from 'express';
 const species = require('./routes/api/species');
 const userRoutes = require('./routes/api/user');
 const profile = require('./routes/api/profile');
+const plants = require('./routes/api/plantsRoutes');
 
 import connectDatabase from '../config/database';
 
@@ -22,12 +23,11 @@ connectDatabase();
 app.set('port', process.env.PORT || 8080);
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+
 app.use('/api/stats', statsRouter);
-
-app.use('/api/species', species)
-
-app.use('/api/user', userRoutes)
-
+app.use('/api/plants', plants);
+app.use('/api/species', species);
+app.use('/api/user', userRoutes);
 app.use('/api/profiles', profile);
 
 app.get('/', (_req, res) => {

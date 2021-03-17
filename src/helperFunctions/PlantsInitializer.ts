@@ -1,13 +1,14 @@
 import { SchemaTypes } from 'mongoose';
+import Plants from '../models/Plants';
 
 
 const mongoose = require('mongoose');
 
-enum SunExposure {
-    SHADED,
-    HALFSUNNY,
-    SUNNY,
-}
+// enum SunExposure {
+//     SHADED,
+//     HALFSUNNY,
+//     SUNNY,
+// }
 async function createPlants() {
     const plant1 = new Plants({
         watering: {
@@ -26,7 +27,7 @@ async function createPlants() {
         },
         wateringInterval: Number,
         conditions: {
-            sunExposure: SunExposure.HALFSUNNY,
+            // sunExposure: SunExposure.HALFSUNNY,
             airHumidifier: false,
             artificialLighining: false,
             awayFromTheHeater: true,

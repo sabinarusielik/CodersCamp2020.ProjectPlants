@@ -2,11 +2,11 @@ import { SchemaTypes } from 'mongoose';
 
 const mongoose = require('mongoose');
 
-enum SunExposure {
-    SHADED,
-    HALFSUNNY,
-    SUNNY,
-}
+// enum SunExposure {
+//     SHADED,
+//     HALFSUNNY,
+//     SUNNY,
+// }
 
 const plantsSchema = new mongoose.Schema({
     //species:
@@ -28,7 +28,7 @@ const plantsSchema = new mongoose.Schema({
     },
     wateringInterval: Number,
     conditions: {
-        sunExposure: SunExposure,
+        // sunExposure: SunExposure,
         airHumidifier: Boolean,
         artificialLighining: Boolean,
         awayFromTheHeater: Boolean,
