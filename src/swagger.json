@@ -21,6 +21,10 @@
     ],
     "tags": [
         {
+            "name": "Stats",
+            "description": "API for stats in the system"
+        },
+        {
             "name": "Plants",
             "description": "API for plants in the system"
         },
@@ -42,7 +46,7 @@
     "paths": {
         "/stats": {
             "get": {
-                "tags": ["Plants"],
+                "tags": ["Stats"],
                 "summary": "Get all stats in system",
                 "responses": {
                     "200": {
@@ -54,7 +58,7 @@
                 }
             },
             "post": {
-                "tags": ["Plants"],
+                "tags": ["Stats"],
                 "summary": "Create a new plant's stats in system",
                 "requestBody": {
                     "description": "Plant Object",
@@ -92,7 +96,7 @@
                 }
             ],
             "get": {
-                "tags": ["Plants"],
+                "tags": ["Stats"],
                 "summary": "Get plant with given name",
                 "parameters": [
                     {
@@ -119,7 +123,7 @@
             },
             "put": {
                 "summary": "Update plant's sats with given ID",
-                "tags": ["Plants"],
+                "tags": ["Stats"],
                 "requestBody": {
                     "description": "Plant Object",
                     "required": true,
@@ -159,7 +163,7 @@
             },
             "delete": {
                 "summary": "Delete plant's stats with given ID",
-                "tags": ["Plants"],
+                "tags": ["Stats"],
                 "parameters": [
                     {
                         "in": "path",
@@ -361,8 +365,7 @@
                     "description": "User Object",
                     "required": true,
                     "content": {
-                        "application/json": {
-                        }
+                        "application/json": {}
                     }
                 },
                 "produces": ["application/json"],
@@ -406,8 +409,7 @@
                     }
                 }
             }
-        }
-    },
+        },
         "/plants": {
             "get": {
                 "tags": ["Plants"],
@@ -457,7 +459,8 @@
                     }
                 }
             }
-        },
+        }
+    },
     "definitions": {
         "id": {
             "properties": {
