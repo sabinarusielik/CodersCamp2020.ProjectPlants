@@ -3,10 +3,15 @@ const species = require('./routes/api/species');
 
 import connectDatabase from '../config/database';
 
-import statsRouter from './routes/api/stats'
+import statsRouter from './routes/api/stats';
+
+import swaggerUi from 'swagger-ui-express';
+import * as swaggerDocument from './swagger.json';
 
 require('dotenv').config();
 const app = express();
+
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 // Connect to MongoDB
 connectDatabase();
@@ -15,7 +20,7 @@ connectDatabase();
 app.set('port', process.env.PORT || 8080);
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use('/api/stats', statsRouter)
+app.use('/api/stats', statsRouter);
 
 app.use('/api/species', species)
 
