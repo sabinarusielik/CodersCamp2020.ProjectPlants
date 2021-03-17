@@ -25,7 +25,7 @@ const profilesSchema = new mongoose.Schema({
     },
 });
 
-const Profile = mongoose.model('Species', profilesSchema);
+const Profile = mongoose.model('Profile', profilesSchema);
 
 module.exports = Profile;
 
