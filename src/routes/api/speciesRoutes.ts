@@ -1,5 +1,5 @@
 const express = require('express');
-import { Request, Response, Router } from 'express';
+import { Request, Response } from 'express';
 import { getSpecies, getSpeciesByName } from '../../helperFunctions/speciesHelper';
 import { intializeSpecies } from '../../helperFunctions/speciesInitializer';
 
@@ -29,4 +29,4 @@ router.post('/', async (req: Request, res: Response) => {
     res.status(200).send('Species were added').end();
 });
 
-module.exports = router;
+export default router;

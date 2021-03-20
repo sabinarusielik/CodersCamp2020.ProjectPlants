@@ -1,0 +1,536 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "version": "1.0.0",
+        "title": "Seans-TypeScript-NodeJS-CRUD-REST-API-Boilerplate",
+        "description": "A minimal and easy to follow example of what you need to create a CRUD style API in NodeJs using TypeScript",
+        "license": {
+            "name": "MIT",
+            "url": "https://opensource.org/licenses/MIT"
+        }
+    },
+    "servers": [
+        {
+            "url": "/",
+            "description": "Local Dev, or from Heroku"
+        },
+        {
+            "url": "/api/",
+            "description": "With docker-compose and nginx proxy"
+        }
+    ],
+    "tags": [
+        {
+            "name": "Stats",
+            "description": "API for stats in the system"
+        },
+        {
+            "name": "Plants",
+            "description": "API for plants in the system"
+        },
+        {
+            "name": "Species",
+            "description": "API for spiecies in the database"
+        },
+        {
+            "name": "Profiles",
+            "description": "API for profiles in the database"
+        },
+        {
+            "name": "User",
+            "description": "API for users in the database"
+        }
+    ],
+    "consumes": ["application/json"],
+    "produces": ["application/json"],
+    "paths": {
+        "/stats": {
+            "get": {
+                "tags": ["Stats"],
+                "summary": "Get all stats in system",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Cat"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": ["Stats"],
+                "summary": "Create a new plant's stats in system",
+                "requestBody": {
+                    "description": "Plant Object",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/definitions/Cat"
+                            }
+                        }
+                    }
+                },
+                "produces": ["application/json"],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/id"
+                        }
+                    },
+                    "400": {
+                        "description": "Failed. Bad post data."
+                    }
+                }
+            }
+        },
+        "/stats/{id}": {
+            "parameters": [
+                {
+                    "name": "id",
+                    "in": "path",
+                    "required": true,
+                    "description": "Name of the plant that we want to match",
+                    "type": "string"
+                }
+            ],
+            "get": {
+                "tags": ["Stats"],
+                "summary": "Get plant with given name",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "required": true,
+                        "description": "Give me the name of your plant I'll give you stats",
+                        "schema": {
+                            "$ref": "#/definitions/id"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Cat"
+                        }
+                    },
+                    "404": {
+                        "description": "Failed. Plant not found."
+                    }
+                }
+            },
+            "put": {
+                "summary": "Update plant's sats with given ID",
+                "tags": ["Stats"],
+                "requestBody": {
+                    "description": "Plant Object",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/definitions/Cat"
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "required": true,
+                        "description": "Plant with new stats",
+                        "schema": {
+                            "$ref": "#/definitions/id"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Cat"
+                        }
+                    },
+                    "400": {
+                        "description": "Failed. Bad post data."
+                    },
+                    "404": {
+                        "description": "Failed. Plant not found."
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Delete plant's stats with given ID",
+                "tags": ["Stats"],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "required": true,
+                        "description": "Delete plant's stats with id",
+                        "schema": {
+                            "$ref": "#/definitions/id"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/id"
+                        }
+                    },
+                    "404": {
+                        "description": "Failed. Plant not found."
+                    }
+                }
+            }
+        },
+        "/species": {
+            "get": {
+                "tags": ["Species"],
+                "summary": "Get all species in DB",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            },
+            "post": {
+                "tags": ["Species"],
+                "summary": "Initializer of species in DB",
+                "responses": {
+                    "200": {
+                        "description": "Species was added"
+                    }
+                }
+            }
+        },
+        "/species/:name": {
+            "parameters": [
+                {
+                    "name": "name",
+                    "in": "path",
+                    "required": true,
+                    "description": "Name of species we want to see",
+                    "type": "string"
+                }
+            ],
+            "get": {
+                "tags": ["Species"],
+                "summary": "Get species with given name",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "name",
+                        "required": true,
+                        "description": "species with name"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "404": {
+                        "description": "There is no species with name: {name}"
+                    }
+                }
+            }
+        },
+        "/profile": {
+            "get": {
+                "tags": ["Profiles"],
+                "summary": "Get all profiles in system",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Profile"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": ["Profiles"],
+                "summary": "Initializer of profiles in DB",
+                "requestBody": {
+                    "description": "Profile Object",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/definitions/Profile"
+                            }
+                        }
+                    }
+                },
+                "produces": ["application/json"],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/id"
+                        }
+                    },
+                    "400": {
+                        "description": "Failed. Bad post data."
+                    }
+                }
+            }
+        },
+        "/profile/{id}": {
+            "put": {
+                "summary": "Add plant for user with given user ID",
+                "tags": ["Profiles"],
+                "requestBody": {
+                    "description": "Profile Object",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/definitions/Plant"
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "required": true,
+                        "description": "Profile with new plant",
+                        "schema": {
+                            "$ref": "#/definitions/id"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Profile"
+                        }
+                    },
+                    "400": {
+                        "description": "Failed. Bad post data."
+                    },
+                    "404": {
+                        "description": "Failed. Profile not found."
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Delete profile with given user ID",
+                "tags": ["Profiles"],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "required": true,
+                        "description": "Delete profile with id",
+                        "schema": {
+                            "$ref": "#/definitions/id"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/id"
+                        }
+                    },
+                    "404": {
+                        "description": "Failed. Profile not found."
+                    }
+                }
+            }
+        },
+        "/user": {
+            "get": {
+                "tags": ["User"],
+                "summary": "Get all users",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            },
+            "post": {
+                "tags": ["User"],
+                "summary": "Create new user in system",
+                "requestBody": {
+                    "description": "User Object",
+                    "required": true,
+                    "content": {
+                        "application/json": {}
+                    }
+                },
+                "produces": ["application/json"],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Body cannot be empty."
+                    }
+                }
+            }
+        },
+        "/user/:name": {
+            "parameters": [
+                {
+                    "name": "username",
+                    "in": "path",
+                    "required": true,
+                    "description": "Username of desired user",
+                    "type": "string"
+                }
+            ],
+            "get": {
+                "tags": ["User"],
+                "summary": "Get user with given username",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "username",
+                        "required": true,
+                        "description": "User with usernamename"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "404": {
+                        "description": "There is no such user {name}"
+                    }
+                }
+            }
+        },
+        "/plants": {
+            "get": {
+                "tags": ["Plants"],
+                "summary": "Get all plants",
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            },
+            "post": {
+                "tags": ["Plants"],
+                "summary": "Initialize two fields",
+                "responses": {
+                    "200": {
+                        "description": "Plant was added"
+                    }
+                }
+            }
+        },
+        "/plants/:id": {
+            "parameters": [
+                {
+                    "name": "id",
+                    "in": "path",
+                    "required": true,
+                    "description": "The plant we want to see"
+                }
+            ],
+            "get": {
+                "tags": ["Plants"],
+                "summary": "Get plants with given id",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "required": true,
+                        "description": "Plants with the id"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "404": {
+                        "description": "There is no plant with this id {id}"
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "id": {
+            "properties": {
+                "uuid": {
+                    "type": "string"
+                }
+            }
+        },
+        "Cat": {
+            "type": "object",
+            "properties": {
+                "plantsName": {
+                    "type": "string"
+                },
+                "current_streak": {
+                    "type": "number"
+                },
+                "streak_target": {
+                    "type": "number"
+                },
+                "max_streak": {
+                    "type": "number"
+                },
+                "percent_success": {
+                    "type": "number"
+                },
+                "average_month": {
+                    "type": "number"
+                }
+            }
+        },
+        "Profile": {
+            "type": "object",
+            "properties": {
+                "user": {
+                    "type": "object"
+                },
+                "household": {
+                    "type": "object"
+                },
+                "plants": {
+                    "type": "object"
+                },
+                "age": {
+                    "type": "number"
+                },
+                "avatar": {
+                    "type": "string"
+                }
+            }
+        },
+        "Plant": {
+            "type": "object",
+            "properties": {
+                "species": {
+                    "type": "object"
+                },
+                "watering": {
+                    "type": "object"
+                },
+                "checkpoint": {
+                    "type": "object"
+                },
+                "wateringInterval": {
+                    "type": "number"
+                },
+                "conditions": {
+                    "type": "object"
+                }
+            }
+        }
+    }
+}

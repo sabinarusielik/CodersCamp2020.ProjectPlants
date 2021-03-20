@@ -1,7 +1,5 @@
 import { ObjectId, Schema, SchemaType } from "mongoose";
-import Plants from "./models/Plants";
-
-const plants = require ('././models/Plants');
+import Plants from "../models/Plants";
 
 export async function getPlants() {
     const plants = await Plants.find(); 
