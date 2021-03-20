@@ -1,24 +1,18 @@
+require('dotenv').config();
+
 import express from 'express';
-const species = require('./routes/api/species');
-const userRoutes = require('./routes/api/user');
-const profile = require('./routes/api/profile');
-const plants = require('./routes/api/plantsRoutes');
-
-const profileRoutes = require('./routes/api/profile');
-const userRoutes = require('./routes/api/user');
-const species = require('./routes/api/species');
-
 import connectDatabase from '../config/database';
 
-import statsRouter from './routes/api/stats';
+import userRoutes from './routes/api/userRoutes';
+import profileRoutes from './routes/api/profileRoutes';
+import speciesRoutes from './routes/api/speciesRoutes';
+import plantsRoutes from './routes/api/plantsRoutes';
+import statsRouter from './routes/api/statsRoutes';
 
 import swaggerUi from 'swagger-ui-express';
 import * as swaggerDocument from './swagger.json';
 
-require('dotenv').config();
 const app = express();
-
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 // Connect to MongoDB
 connectDatabase();
@@ -28,11 +22,12 @@ app.set('port', process.env.PORT || 8080);
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-app.use('/api/stats', statsRouter);
-app.use('/api/plants', plants);
-app.use('/api/species', species);
 app.use('/api/user', userRoutes);
-app.use('/api/profiles', profile);
+app.use('/api/profiles', profileRoutes);
+app.use('/api/plants', plantsRoutes);
+app.use('/api/species', speciesRoutes);
+app.use('/api/stats', statsRouter);
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 app.get('/', (_req, res) => {
     console.log('I am alive');
@@ -44,4 +39,3 @@ const port = process.env.PORT || 8080;
 app.listen(+port, host, () => console.log(`[Server] Listening on http://${host}:${port}`));
 
 export default app;
-
