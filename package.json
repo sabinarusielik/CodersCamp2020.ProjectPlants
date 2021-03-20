@@ -1,49 +1,31 @@
 {
-    "name": "CodersCamp2020.ProjectPlants",
+    "name": "plant-helper-fullstack",
     "version": "1.0.0",
-    "description": "**CodersCamp (coderscamp.edu.pl) - Największy otwarty kurs programowania webowego**",
-    "main": "index.js",
+    "description": "CodersCamp2020Project",
     "scripts": {
-        "clean": "rimraf .cache && rimraf coverage && rimraf dist && rimraf node_modules",
-        "prebuild": "rimraf dist",
-        "build": "rimraf ./dist && tsc",
-        "format": "prettier --write",
-        "test": "jest --watchAll",
-        "test:watch": "jest --watch",
-        "test:cov": "jest --coverage",
-        "start": "nodemon dist/app.js",
-        "start:dev": "nodemon"
+        "install:backend": "cd backend && npm install",
+        "install:frontend": "cd frontend && npm install",
+        "install:all": "npm run install:backend && npm run install:frontend",
+        "start:dev": "concurrently \"cd frontend && npm run start\" \"cd backend && npm run start:dev\"",
+        "heroku-postbuild": "cd frontend && npm build",
+        "format": "prettier --write ."
     },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/sabinarusielik/CodersCamp2020.ProjectPlants.git"
-    },
-    "keywords": [],
     "author": "",
     "license": "ISC",
-    "bugs": {
-        "url": "https://github.com/sabinarusielik/CodersCamp2020.ProjectPlants/issues"
-    },
-    "homepage": "https://github.com/sabinarusielik/CodersCamp2020.ProjectPlants#readme",
     "dependencies": {
-        "bcrypt": "^5.0.0",
-        "body-parser": "^1.19.0",
-        "dotenv": "^8.2.0",
-        "express": "^4.17.1",
-        "helmet": "^4.4.1",
-        "jsonwebtoken": "^8.5.1",
-        "mongoose": "^5.11.18"
+        "concurrently": "^6.0.0",
+        "husky": "^4.2.5",
+        "lint-staged": "^10.2.9",
+        "prettier": "^2.0.5"
     },
-    "devDependencies": {
-        "@types/express": "^4.17.11",
-        "@types/jest": "^26.0.20",
-        "@types/node": "^14.14.31",
-        "jest": "^26.6.3",
-        "nodemon": "^2.0.7",
-        "prettier": "^2.2.1",
-        "rimraf": "^3.0.2",
-        "ts-jest": "^26.5.1",
-        "ts-node": "^9.1.1",
-        "typescript": "^4.1.5"
+    "lint-staged": {
+        "*.{js,jsx,ts,tsx,json,css,scss,md}": [
+            "npm run format"
+        ]
+    },
+    "husky": {
+        "hooks": {
+            "pre-commit": "lint-staged"
+        }
     }
 }
