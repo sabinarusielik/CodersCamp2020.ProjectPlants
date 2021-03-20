@@ -8,3 +8,4 @@ export async function createUser(username: String, password: String, email: Stri
     });
     await user.save();
 }
+

@@ -4,6 +4,10 @@ const userRoutes = require('./routes/api/user');
 const profile = require('./routes/api/profile');
 const plants = require('./routes/api/plantsRoutes');
 
+const profileRoutes = require('./routes/api/profile');
+const userRoutes = require('./routes/api/user');
+const species = require('./routes/api/species');
+
 import connectDatabase from '../config/database';
 
 import statsRouter from './routes/api/stats';

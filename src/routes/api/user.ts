@@ -3,6 +3,7 @@ import { Request, Response, Router } from 'express';
 import { getUser, getUserByName } from '../../helperFunctions/userHelper';
 import { createUser } from '../../helperFunctions/userInitializer';
 
+
 const router = express.Router();
 
 router.get('/', async (req: Request, res: Response) => {
