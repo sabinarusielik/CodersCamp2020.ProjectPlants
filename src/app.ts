@@ -10,7 +10,7 @@ import plantsRoutes from './routes/api/plantsRoutes';
 import statsRouter from './routes/api/statsRoutes';
 
 import swaggerUi from 'swagger-ui-express';
-import * as swaggerDocument from './swagger.json';
+import * as swaggerDocument from '../docs/swagger.json';
 
 const app = express();
 
