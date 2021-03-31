@@ -1,11 +1,12 @@
 import * as React from 'react';
+import SpeciecContainer from './SpeciesContainer';
 
 const App = (): React.ReactElement => {
     return (
         <div className="App">
             <header className="App-header">
                 <p>
-                    Edit <code>src/App.tsx</code> and save to reload.
+                    <SpeciecContainer />
                 </p>
             </header>
         </div>
