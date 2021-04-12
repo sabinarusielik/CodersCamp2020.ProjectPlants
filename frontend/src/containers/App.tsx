@@ -1,14 +1,17 @@
 import * as React from 'react';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import 'semantic-ui-css/semantic.min.css';
+import Navbar from '../components/Navbar';
+import Login from '../components/Login';
 
 const App = (): React.ReactElement => {
     return (
-        <div className="App">
-            <header className="App-header">
-                <p>
-                    Edit <code>src/App.tsx</code> and save to reload.
-                </p>
-            </header>
-        </div>
+        <BrowserRouter>
+            <Navbar />
+            <Switch>
+                <Route exact path="/login" component={Login} />
+            </Switch>
+        </BrowserRouter>
     );
 };
 
