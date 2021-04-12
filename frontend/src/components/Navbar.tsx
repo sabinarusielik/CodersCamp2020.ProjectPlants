@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Menu, Icon, Segment } from 'semantic-ui-react';
+import { Menu, Icon } from 'semantic-ui-react';
 import { NavLink } from 'react-router-dom';
 
 const Navbar: React.FC = (): any => {

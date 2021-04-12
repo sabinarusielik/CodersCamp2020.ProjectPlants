@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { Grid, Segment, Form } from 'semantic-ui-react';
+import { NavLink } from 'react-router-dom';
 
 const Login: React.FC = (): any => {
     return (
@@ -16,7 +17,11 @@ const Login: React.FC = (): any => {
                     </Form.Field>
                     <Form.Button type="submit" color="purple">
                         {' '}
-                        Submit{' '}
+                        Sign in{' '}
+                    </Form.Button>
+                    <Form.Button basic type="submit" color="purple" as={NavLink} to="/signup">
+                        {' '}
+                        Sign up{' '}
                     </Form.Button>
                 </Form>
             </Segment>
