@@ -5,14 +5,14 @@ import { NavLink } from 'react-router-dom';
 const Navbar: React.FC = (): any => {
     return (
         <Menu fixed={'bottom'} widths={5}>
-            <Menu.Item as={NavLink} to="/login">
+            <Menu.Item as={NavLink} to="/profile">
                 <Icon size="big" name="user" />
             </Menu.Item>
             <Menu.Item as={NavLink} to="/stats">
                 <Icon size="big" name="chart bar" />
             </Menu.Item>
             <Menu.Item as={NavLink} to="/home">
-                <Icon size="big" color="purple" name="home" />
+                <Icon size="big" style={{ color: '#1A9593' }} name="home" />
             </Menu.Item>
             <Menu.Item as={NavLink} to="/plant">
                 <Icon size="big" name="leaf" />
