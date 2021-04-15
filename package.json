@@ -13,10 +13,14 @@
     "author": "",
     "license": "ISC",
     "dependencies": {
+        "@types/semantic-ui": "^2.2.7",
         "concurrently": "^6.0.0",
         "husky": "^4.2.5",
         "lint-staged": "^10.2.9",
-        "prettier": "^2.0.5"
+        "prettier": "^2.0.5",
+        "react-router-dom": "^5.2.0",
+        "semantic-ui-css": "^2.4.1",
+        "semantic-ui-react": "^2.0.3"
     },
     "lint-staged": {
         "*.{js,jsx,ts,tsx,json,css,scss,md}": [
@@ -27,5 +31,8 @@
         "hooks": {
             "pre-commit": "lint-staged"
         }
+    },
+    "devDependencies": {
+        "@types/react-router-dom": "^5.1.7"
     }
 }
