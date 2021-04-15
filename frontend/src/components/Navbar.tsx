@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Menu, Icon } from 'semantic-ui-react';
 import { NavLink } from 'react-router-dom';
 
-const Navbar: React.FC = (): any => {
+const Navbar: React.FC = (): React.ReactElement => {
     return (
         <Menu fixed={'bottom'} widths={5}>
             <Menu.Item as={NavLink} to="/profile">

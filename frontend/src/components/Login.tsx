@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Grid, Segment, Form, Button, Divider } from 'semantic-ui-react';
 import { NavLink, Link } from 'react-router-dom';
 
-const Login: React.FC = (): any => {
+const Login: React.FC = (): React.ReactElement => {
     return (
         <Grid centered style={{ padding: 200, backgroundColor: '#582949' }}>
             <Segment>

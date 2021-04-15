@@ -8,24 +8,31 @@ const plantOptions = [
     {
         key: 'Bogdan',
         text: 'Bogdan',
-        value: 'Bogdan',
+        value: '660104',
         image: { avatar: true, src: plant },
     },
     {
         key: 'Dżony',
         text: 'Dżony',
-        value: 'Dżony',
+        value: '031002',
         image: { avatar: true, src: plant3 },
     },
     {
         key: 'Stachu',
         text: 'Stachu',
-        value: 'Stachu',
+        value: '899085',
         image: { avatar: true, src: plant2 },
     },
 ];
 
-const Stats: React.FC = (): any => {
+const Stats: React.FC = (): React.ReactElement => {
+    const numbers = [5, 6, 0, 1, 2, 10];
+    const [stats, setStats] = React.useState(numbers);
+
+    const handleDropdown = (event: any, data: any) => {
+        setStats(data.value);
+    };
+
     return (
         <Grid centered style={{ backgroundColor: '#582949' }}>
             <Dropdown
@@ -34,25 +41,32 @@ const Stats: React.FC = (): any => {
                 selection
                 fluid
                 options={plantOptions}
+                onChange={handleDropdown}
             />
             <Segment style={{ marginBottom: 100 }}>
                 <Statistic color="yellow">
-                    <Statistic.Value>5</Statistic.Value>
+                    <Statistic.Value>{stats[0]}</Statistic.Value>
                     <Statistic.Label>Current Streak</Statistic.Label>
                 </Statistic>
                 <Divider />
                 <Statistic color="teal">
-                    <Statistic.Value>60</Statistic.Value>
+                    <Statistic.Value>
+                        {stats[1]}
+                        {stats[2]}
+                    </Statistic.Value>
                     <Statistic.Label>Streak Target</Statistic.Label>
                 </Statistic>
                 <Divider />
                 <Statistic color="green">
-                    <Statistic.Value>12</Statistic.Value>
+                    <Statistic.Value>
+                        {stats[3]}
+                        {stats[4]}
+                    </Statistic.Value>
                     <Statistic.Label>Percent Success</Statistic.Label>
                 </Statistic>
                 <Divider />
                 <Statistic color="pink">
-                    <Statistic.Value>10</Statistic.Value>
+                    <Statistic.Value>{stats[5]}</Statistic.Value>
                     <Statistic.Label>Average Month</Statistic.Label>
                 </Statistic>
             </Segment>
