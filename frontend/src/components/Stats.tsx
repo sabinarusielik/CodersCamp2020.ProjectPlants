@@ -9,13 +9,13 @@ const plantOptions = [
         key: 'Bogdan',
         text: 'Bogdan',
         value: 'Bogdan',
-        image: { avatar: true, scr: plant3 },
+        image: { avatar: true, src: plant },
     },
     {
         key: 'Dżony',
         text: 'Dżony',
         value: 'Dżony',
-        image: { avatar: true, src: plant },
+        image: { avatar: true, src: plant3 },
     },
     {
         key: 'Stachu',
