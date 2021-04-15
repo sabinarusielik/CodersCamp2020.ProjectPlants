@@ -4,6 +4,7 @@ import 'semantic-ui-css/semantic.min.css';
 import Navbar from '../components/Navbar';
 import Login from '../components/Login';
 import Stats from '../components/Stats';
+import Profile from '../components/Profile';
 
 const App = (): React.ReactElement => {
     return (
@@ -12,6 +13,7 @@ const App = (): React.ReactElement => {
             <Switch>
                 <Route exact path="/login" component={Login} />
                 <Route exact path="/stats" component={Stats} />
+                <Route exact path="/profile" component={Profile} />
             </Switch>
         </BrowserRouter>
     );
