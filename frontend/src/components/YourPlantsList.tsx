@@ -1,5 +1,27 @@
 import React from 'react';
-import { Header, List, Image, Segment } from 'semantic-ui-react';
+import { Header, List } from 'semantic-ui-react';
+
+import PlantListSegment from './PlantListSegment';
+import PlantListButton from './PlantListButton';
+
+import image from '../assets/images/aloe.svg';
+import image2 from '../assets/images/cactus.svg';
+import image3 from '../assets/images/monstera.svg';
+
+export const listOfPlants = [
+    { name: 'Guillermo', src: image },
+    { name: 'Laszlo', src: image2 },
+    { name: 'Nadja', src: image3 },
+    { name: 'Nandor', src: image },
+    { name: 'Colin', src: image3 },
+];
+
+const createNewPlant = (name: string, src: string) => {
+    let newPlant = { name: name, src: src };
+    return listOfPlants.push(newPlant);
+};
+
+createNewPlant('Bigosik', image2);
 
 const YourPlantsList: React.FC = (): React.ReactElement => {
     return (
@@ -7,38 +29,11 @@ const YourPlantsList: React.FC = (): React.ReactElement => {
             <Header as="h2" style={{ marginBottom: '10px', color: 'white' }}>
                 Your Plants
             </Header>
-            <List horizontal style={{ overflowX: 'scroll', height: '100px' }}>
-                <List.Item>
-                    <Segment>
-                        <List.Content>
-                            <List.Header>+</List.Header>
-                        </List.Content>
-                    </Segment>
-                </List.Item>
-                <List.Item>
-                    <Segment>
-                        <Image avatar src="/images/avatar/small/tom.jpg" />
-                        <List.Content>
-                            <List.Header>Aloevera</List.Header>
-                        </List.Content>
-                    </Segment>
-                </List.Item>
-                <List.Item>
-                    <Segment>
-                        <Image avatar src="/images/avatar/small/christian.jpg" />
-                        <List.Content>
-                            <List.Header>Cactus</List.Header>
-                        </List.Content>
-                    </Segment>
-                </List.Item>
-                <List.Item>
-                    <Segment>
-                        <Image avatar src="/images/avatar/small/matt.jpg" />
-                        <List.Content>
-                            <List.Header>Monstera</List.Header>
-                        </List.Content>
-                    </Segment>
-                </List.Item>
+            <List style={{ overflowX: 'scroll', whiteSpace: 'nowrap' }}>
+                <PlantListButton />
+                {listOfPlants.map((plant) => {
+                    return <PlantListSegment name={plant.name} src={plant.src} />;
+                })}
             </List>
         </div>
     );
