@@ -19,7 +19,9 @@ const PlantListForm = () => {
             <Form.Field>
                 <Checkbox label="Send me e-mail notification" />
             </Form.Field>
-            <Button type="submit">Add</Button>
+            <Button type="submit" style={{ backgroundColor: '#582949', color: 'white' }}>
+                Add
+            </Button>
         </Form>
     );
 };

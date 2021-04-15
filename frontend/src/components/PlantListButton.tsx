@@ -8,7 +8,7 @@ import './plantListStyle.css';
 const PlantListButton = () => {
     return (
         <Modal trigger={<Button content="+" className="addPlantButton" />}>
-            <Modal.Header>Add your plant!</Modal.Header>
+            <Modal.Header style={{ backgroundColor: '#582949', color: 'white' }}>Add your plant!</Modal.Header>
             <Modal.Content>
                 <PlantListForm />
             </Modal.Content>
